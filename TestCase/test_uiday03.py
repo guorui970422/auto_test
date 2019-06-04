@@ -63,20 +63,31 @@ class Test_ui_aout:
         # assertions.assert_code()
         assert "首页" in driver.page_source
         time.sleep(2)
-        # 点击商品列表 (//span[contains(text(),'商品')])[1]
-        base.click("点击商品列表","(//span[contains(text(),'商品')])[1]")
-        # 点击添加商品 //span[contains(text(),'添加商品')]
-        base.click("点击添加商品", "//span[contains(text(),'添加商品')]")
-        assert "商品分类" in driver.page_source
+        # 点击订单 (//span[contains(text(),'商品')])[1]
+        base.click("点击订单","(//span[contains(text(),'订单')])[1]")
+        # 点击订单列表 //span[contains(text(),'添加商品')]
+        base.click("点击订单列表", "(//span[contains(text(),'订单列表')])[1]")
+        assert "收货人" in driver.page_source
         time.sleep(2)
-        # 点击商品分类下拉框//span[@class='el-cascader__label']
-        base.click("点击商品分类下拉框","//span[@class='el-cascader__label']")
-        # 点击商品分类(//li[@class='el-cascader-menu__item el-cascader-menu__item--extensible'])[1]
-        base.click("点击商品分类","(//li[@class='el-cascader-menu__item el-cascader-menu__item--extensible'])[1]")
-        # 点击男鞋 //li[contains(text(),'男鞋')]
-        base.click("点击男鞋","//li[contains(text(),'男鞋')]")
-        # 点击商品名称
-        base.send_keys("点击商品名称","(//input[@class='el-input__inner'])[2]","我想面试")
+        # 订单状态选择代发货 (//input[@class='el-input__inner'])[4]
+        base.click("订单状态选择代发货","(//input[@class='el-input__inner'])[4]")
+        base.click("状态选择代发货","//span[contains(text(),'待发货')]")
+        # 点击查询搜索 //button[@class='el-button el-button--primary el-button--small']
+        base.click("点击查询搜索","//button[@class='el-button el-button--primary el-button--small']")
+        # 选择第一条订单，点击订单发货(//button[@class='el-button el-button--default el-button--mini'])[3]
+        base.click("选择第一条订单，点击订单发货","(//button[@class='el-button el-button--default el-button--mini'])[3]")
+        # 选择配送方式 (//input[@class='el-input__inner'])[2]
+        base.click("选择配送方式","//input[@placeholder='请选择物流公司']")
+        base.click("选择快递公司","//span[contains(text(),'顺丰')]")
+        # 输入物流单号
+        base.send_keys("输入物流单号","(//input[@class='el-input__inner'])[2]","1234567887654321")
+        # 点击确定 //button[@class='el-button el-button--primary']
+        base.click("点击确定","(//span[contains(text(),'确定')])[1]")
+        # 点击确定提示 //button[@class='el-button el-button--default el-button--small el-button--primary ']
+        base.click("点击确定提示","(//span[contains(text(),'确定')])[2]")
+        # 获取提示文本并断言
+        print(driver.page_source)
+        assert  "发货成功" in driver.page_source
         time.sleep(2)
 
 
