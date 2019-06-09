@@ -3,7 +3,7 @@ import allure
 import pytest
 request = Request.Request()
 assertion = Assert.Assertions()
-Url='http://192.168.1.137:8080/'
+Url='http://192.168.1.104:8080/'
 head = {}
 sku_id = []
 @allure.feature('商品模块')
